@@ -8,7 +8,7 @@ return [
             'identityClass' => 'common\models\User',
         ],
         'request' => [
-            'cookieValidationKey' => 'test',
+            'cookieValidationKey' => new \yii\helpers\UnsetArrayValue(),
         ],
     ],
 ];

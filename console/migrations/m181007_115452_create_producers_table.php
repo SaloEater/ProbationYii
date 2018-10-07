@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `producers`.
  */
-class m181004_105850_create_producers_table extends Migration
+class m181007_115452_create_producers_table extends Migration
 {
     /**
      * {@inheritdoc}
@@ -14,9 +14,7 @@ class m181004_105850_create_producers_table extends Migration
     {
         $this->createTable('producers', [
             'id' => $this->primaryKey(),
-            'surname' => $this->text(),
             'name' => $this->text(),
-            'patronymic' => $this->text(),
         ]);
     }
 

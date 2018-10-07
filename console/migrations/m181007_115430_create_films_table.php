@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `films`.
  */
-class m181004_105758_create_films_table extends Migration
+class m181007_115430_create_films_table extends Migration
 {
     /**
      * {@inheritdoc}
@@ -14,7 +14,8 @@ class m181004_105758_create_films_table extends Migration
     {
         $this->createTable('films', [
             'id' => $this->primaryKey(),
-            'name' => $this->text()
+            'name' => $this->text(),
+            'year' => $this->integer()
         ]);
     }
 
