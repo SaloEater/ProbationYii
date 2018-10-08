@@ -204,6 +204,9 @@ function setCookieValidationKey($root, $paths)
         $key = strtr(substr(base64_encode($bytes), 0, $length), '+/=', '_-.');
         $content = preg_replace('/(("|\')cookieValidationKey("|\')\s*=>\s*)(""|\'\')/', "\\1'$key'", file_get_contents($file));
         file_put_contents($file, $content);
+        $codeceptFile = __DIR__.'/common/config/test-local.php';
+        $contentForCodeception = preg_replace('/(("|\')cookieValidationKey("|\')\s*=>\s*)(""|\'\')/', "\\1'$key'", file_get_contents($codeceptFile));
+        file_put_contents($codeceptFile, $contentForCodeception);
     }
 }
 

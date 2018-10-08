@@ -8,6 +8,7 @@ class ContactFormTest extends \Codeception\Test\Unit
 {
     public function testSendEmail()
     {
+
         $model = new ContactForm();
 
         $model->attributes = [

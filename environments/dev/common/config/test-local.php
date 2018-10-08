@@ -6,8 +6,11 @@ return yii\helpers\ArrayHelper::merge(
     [
         'components' => [
             'db' => [
-                'dsn' => 'mysql:host=localhost;dbname=yii2advanced_test',
-            ]
+                'dsn' => 'mysql:host=127.0.0.1;dbname=yii2advanced_test',
+            ],
+            'request' => [
+                'cookieValidationKey' => '',
+            ],
         ],
     ]
 );
