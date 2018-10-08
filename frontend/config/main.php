@@ -46,7 +46,7 @@ return [
         'db' => [
             'class' => 'yii\db\Connection',
             'driverName' => 'mysql',
-            'dsn' => 'odbc:Driver={MySQL};Server=localhost;Database=yii',
+            'dsn' => 'mysql:host=localhost;dbname=yii2advanced',
             'username' => 'mysql',
             'password' => 'mysql',
         ],

@@ -13,6 +13,14 @@ return [
     'bootstrap' => ['log'],
     'modules' => [],
     'components' => [
+
+        'db' => [
+            'class' => 'yii\db\Connection',
+            'driverName' => 'mysql',
+            'dsn' => 'mysql:host=localhost;dbname=yii2advanced',
+            'username' => 'mysql',
+            'password' => 'mysql',
+        ],
         'request' => [
             'csrfParam' => '_csrf-backend',
         ],
