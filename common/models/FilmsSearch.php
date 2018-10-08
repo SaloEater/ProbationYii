@@ -41,6 +41,7 @@ class FilmsSearch extends Films
      */
     public function search($params)
     {
+
         $query = Films::find();
 
         // add conditions that should always apply here

@@ -21,6 +21,13 @@ return [
             'username' => 'mysql',
             'password' => 'mysql',
         ],
+        'dbfilms' => [
+            'class' => 'yii\db\Connection',
+            'driverName' => 'mysql',
+            'dsn' => 'mysql:host=localhost;dbname=films',
+            'username' => 'mysql',
+            'password' => 'mysql',
+        ],
         'request' => [
             'csrfParam' => '_csrf-backend',
         ],
