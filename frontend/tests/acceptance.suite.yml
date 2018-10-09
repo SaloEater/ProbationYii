@@ -1,0 +1,8 @@
+suite_namespace: frontend\tests\acceptance
+actor: AcceptanceTester
+modules:
+    enabled:
+        - PhpBrowser:
+            url: http://admin.project.test
+        - Yii2:
+            part: init
