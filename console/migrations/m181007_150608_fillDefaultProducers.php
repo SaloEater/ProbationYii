@@ -22,7 +22,8 @@ class m181007_150608_fillDefaultProducers extends Migration
             $this->insert(
                 'producers',
                 [
-                    'name' => $prod]
+                    'name' => $prod,
+                ]
             );
         }
     }
@@ -36,7 +37,8 @@ class m181007_150608_fillDefaultProducers extends Migration
             $this->delete(
                 'producers',
                 [
-                    'name' => $prod]
+                    'name' => $prod,
+                ]
             );
         }
     }

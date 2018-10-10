@@ -10,9 +10,15 @@ class m181007_150547_fillDefaultFilms extends Migration
     /**
      * {@inheritdoc}
      */
-    private $content = ['Тор: Рагнарёк', 'Человек-паук: Возвращение домой', 'Невероятный Халк', 'Человек-муравей и Оса',
-                    'Железный человек'];
+    private $content = [
+        'Тор: Рагнарёк',
+        'Человек-паук: Возвращение домой',
+        'Невероятный Халк',
+        'Человек-муравей и Оса',
+        'Железный человек',
+    ];
     private $years = [2013, 2016, 2008, 2017, 2013];
+
     public function safeUp()
     {
         foreach ($this->content as $key => $film) {
@@ -20,7 +26,8 @@ class m181007_150547_fillDefaultFilms extends Migration
                 'films',
                 [
                     'name' => $film,
-                    'year' => $this->years[$key]]
+                    'year' => $this->years[$key],
+                ]
             );
         }
     }
@@ -35,7 +42,8 @@ class m181007_150547_fillDefaultFilms extends Migration
                 'films',
                 [
                     'name' => $film,
-                    'year' => $this->years[$key]]
+                    'year' => $this->years[$key],
+                ]
             );
         }
     }
