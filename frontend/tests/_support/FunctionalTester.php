@@ -30,4 +30,6 @@ class FunctionalTester extends \Codeception\Actor
     {
         $this->dontSee($message, '.help-block');
     }
+
+
 }

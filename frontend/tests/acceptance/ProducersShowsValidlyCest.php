@@ -17,11 +17,10 @@ class producersShowsValidlyCest
 
     public function _before(AcceptanceTester $I)
     {
-        $this->validateCreation($I);
-        $this->validateIndexing($I);
+
     }
 
-    private function validateCreation(AcceptanceTester $I)
+    public function validateCreation(AcceptanceTester $I)
     {
         $I->amOnPage('/producers/create');
         $I->expect('Title \'Producers\' and belongs fields');
@@ -30,7 +29,7 @@ class producersShowsValidlyCest
         $this->seeFields($I);
     }
 
-    private function validateIndexing(AcceptanceTester $I)
+    public function validateIndexing(AcceptanceTester $I)
     {
         $I->amOnPage('/producers');
         $I->expect('List of producers');

@@ -17,11 +17,9 @@ class genresShowsValidlyCest
 
     public function _before(AcceptanceTester $I)
     {
-        $this->validateCreation($I);
-        $this->validateIndexing($I);
     }
 
-    private function validateCreation(AcceptanceTester $I)
+    public function validateCreation(AcceptanceTester $I)
     {
         $I->amOnPage('/genres/create');
         $I->expect('Title \'Genres\' and belongs fields');
@@ -30,7 +28,7 @@ class genresShowsValidlyCest
         $this->seeFields($I);
     }
 
-    private function validateIndexing(AcceptanceTester $I)
+    public function validateIndexing(AcceptanceTester $I)
     {
         $I->amOnPage('/genres');
         $I->expect('List of genres');

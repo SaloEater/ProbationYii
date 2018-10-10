@@ -28,7 +28,8 @@ class Producers extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'string'],
+            [['name'], 'required'],
+            ['name', 'string']
         ];
     }
 

@@ -17,11 +17,10 @@ class filmsShowsValidlyCest
 
     public function _before(AcceptanceTester $I)
     {
-        $this->validateCreation($I);
-        $this->validateIndexing($I);
+
     }
 
-    private function validateCreation(AcceptanceTester $I)
+    public function validateCreation(AcceptanceTester $I)
     {
         $I->amOnPage('/films/create');
         $I->expect('Title \'Films\' and belongs fields');
@@ -30,7 +29,7 @@ class filmsShowsValidlyCest
         $this->seeFields($I);
     }
 
-    private function validateIndexing(AcceptanceTester $I)
+    public function validateIndexing(AcceptanceTester $I)
     {
         $I->amOnPage('/films');
         $I->expect('List of films');
