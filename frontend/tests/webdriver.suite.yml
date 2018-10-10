@@ -1,0 +1,8 @@
+actor: WebdriverTester
+modules:
+    enabled:
+        - WebDriver:
+            url: 'http://admin.project.test'
+            port: 4444
+            browser: chrome
+        - frontend\tests\Helper\Webdriver

@@ -4,10 +4,12 @@ namespace frontend\tests\acceptance;
 
 use frontend\tests\AcceptanceTester;
 use yii\helpers\Url;
+use Helper\TestHelper;
 
 class filmsShowsValidlyCest
 {
     private $columns = ['Name', 'Year'];
+
     private function seeFields(AcceptanceTester $I)
     {
         foreach ($this->columns as $field) {
@@ -17,7 +19,6 @@ class filmsShowsValidlyCest
 
     public function _before(AcceptanceTester $I)
     {
-
     }
 
     public function validateCreation(AcceptanceTester $I)

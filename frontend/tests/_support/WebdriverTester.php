@@ -16,9 +16,10 @@ namespace frontend\tests;
  *
  * @SuppressWarnings(PHPMD)
 */
-class AcceptanceTester extends \Codeception\Actor
+class WebdriverTester extends \Codeception\Actor
 {
-    use _generated\AcceptanceTesterActions;
+    use _generated\WebdriverTesterActions;
+
    /**
     * Define custom actions here
     */
