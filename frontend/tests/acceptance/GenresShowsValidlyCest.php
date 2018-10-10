@@ -42,9 +42,9 @@ class genresShowsValidlyCest
         $this->validateViewing($I, $index);
     }
 
-    private function validateUpdating(AcceptanceTester $I)
+    private function validateUpdating(AcceptanceTester $I, $index)
     {
-        $I->amOnPage('/genres/update?id=1');
+        $I->amOnPage("/genres/update?id=$index");
         $I->expect('Update interaction window');
         $I->see('Update Genres');
         $I->seeElement('.btn.btn-success');
@@ -52,9 +52,9 @@ class genresShowsValidlyCest
         $this->seeFields($I);
     }
 
-    private function validateViewing(AcceptanceTester $I)
+    private function validateViewing(AcceptanceTester $I, $index)
     {
-        $I->amOnPage('/genres/view?id=1');
+        $I->amOnPage("/genres/view?id=$index");
         $I->expect('View of chosen element');
         $I->seeElement('.btn.btn-primary');
         $I->seeElement('.btn.btn-danger');
