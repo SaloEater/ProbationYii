@@ -2,11 +2,16 @@
 
 namespace backend\controllers;
 
+use Codeception\Util\Debug;
+use common\models\Films;
 use common\models\ProducerFilms;
+use common\models\Producers;
+use common\models\ProducersSearch;
 use Yii;
 use yii\web\Controller;
 use common\models\ProducerFilmsSearch;
 use yii\web\NotFoundHttpException;
+use yii\data\ActiveDataProvider;
 
 class ProducerFilmsController extends Controller
 {
@@ -17,9 +22,10 @@ class ProducerFilmsController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new ProducerFilmsSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        $params = Yii::$app->request->queryParams;
+        $searchModel = new ProducersSearch();
+        $dataProvider = (new ProducerFilmsSearch())->search($params);
+        $searchModel->name = $params['ProducersSearch']['name'];
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -34,8 +40,11 @@ class ProducerFilmsController extends Controller
      */
     public function actionView($id)
     {
+        $info = $this->findModel($id);
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'producer' => $info['producer'],
+            'films' => $info['films']
         ]);
     }
 
@@ -43,16 +52,40 @@ class ProducerFilmsController extends Controller
      * Finds the Films model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return ProducerFilms the loaded model
+     * @return array the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = ProducerFilms::findOne($id)) !== null) {
-            return $model;
+        /**
+         * @var Producers $producer
+         */
+        $producer = Producers::findOne($id);
+
+        /**
+         * @var ProducerFilms[] $films_id
+         */
+        $films_id = ProducerFilms::findAll(['producer_id' => $id]);
+
+        /**
+         * @var Films[] $_films
+         */
+        $_films = Films::find();
+
+        foreach ($films_id as $film_id) {
+            $_films->orFilterWhere([
+                'id' => $film_id->film_id
+            ]);
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        $films= new ActiveDataProvider([
+            'query' => $_films,
+        ]);
+
+        return [
+            'producer' => $producer,
+            'films' => $films
+        ];
     }
 
 }

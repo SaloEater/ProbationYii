@@ -44,22 +44,26 @@ class ProducerFilmsSearch extends ProducerFilms
      */
     public function search($params)
     {
+
         // add conditions that should always apply here
-
-        $this->load($params);
-
         //Выбираем номера
         $query = ProducerFilms::find();
+
+        // grid filtering conditions
+        /*$query->andFilterWhere([
+            'id' => $this->id
+        ]);*/
 
         $query->groupBy('producer_id');
 
         $query->andHaving('COUNT(producer_id) > 1');
 
-        /*
-         * @var $result Producers[]
+        /**
+         * Делаем выборку
+         * @var ProducerFilms[] $producers
          */
-        $result = $query->all();
-        //Выбираем имена по номерам
+        $producers = $query->all();
+
         $query = Producers::find();
 
         $dataProvider = new ActiveDataProvider([
@@ -67,21 +71,18 @@ class ProducerFilmsSearch extends ProducerFilms
         ]);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
+            //uncomment the following line if you do not want to return any records when validation fails
+            $query->where('0=1');
             return $dataProvider;
         }
 
-        // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id
-        ]);
-
-        foreach ($result as $record) {
+        foreach ($producers as $producer) {
             $query->orFilterWhere([
-               'id' => $record->attributes['producer_id']
+               'id' => $producer->producer_id
             ]);
         }
+
+        $query->andFilterWhere(['like', 'name', $params['ProducersSearch']['name']]);
 
         return $dataProvider;
     }

@@ -8,7 +8,7 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\ProducerFilmsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Producer Films';
+$this->title = 'More than 1 film';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
