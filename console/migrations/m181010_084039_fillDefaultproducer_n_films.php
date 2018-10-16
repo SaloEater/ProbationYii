@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Class m181010_084039_fillDefaultFilmsNProducers
  */
-class m181010_084039_fillDefaultFilmsNProducers extends Migration
+class m181010_084039_fillDefaultproducer_n_films extends Migration
 {
     private $content = [
         [1, 1],
@@ -22,7 +22,7 @@ class m181010_084039_fillDefaultFilmsNProducers extends Migration
     {
         foreach ($this->content as $item) {
             $this->insert(
-                'filmNproducers',
+                'producer_n_films',
                 [
                     'film_id' => $item[0],
                     'producer_id' => $item[1],
@@ -38,7 +38,7 @@ class m181010_084039_fillDefaultFilmsNProducers extends Migration
     {
         foreach ($this->content as $item) {
             $this->delete(
-                'filmNproducers',
+                'producer_n_films',
                 [
                     'film_id' => $item[0],
                     'producer_id' => $item[1],
@@ -46,19 +46,4 @@ class m181010_084039_fillDefaultFilmsNProducers extends Migration
             );
         }
     }
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m181010_084039_fillDefaultFilmsNProducers cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

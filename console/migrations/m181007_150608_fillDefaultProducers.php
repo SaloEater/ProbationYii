@@ -14,7 +14,7 @@ class m181007_150608_fillDefaultProducers extends Migration
     /*
      * @var $content array[]
      */
-    private $content = ['Кевин Файги', 'Эми Паскаль', 'Гейл Энн Хёрд', 'Ави Арад', 'Стивен Бруссар'];
+    private $content = ['Kevin', 'Amy', 'Gale', 'Avi', 'Steven'];
 
     public function safeUp()
     {

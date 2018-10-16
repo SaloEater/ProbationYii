@@ -5,7 +5,7 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "filmnproducers".
+ * This is the model class for table "producer_n_films".
  *
  * @property int $id
  * @property int $film_id
@@ -21,15 +21,7 @@ class ProducerFilms extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'filmnproducers';
-    }
-
-    /**
-     * @return \yii\db\Connection the database connection used by this AR class.
-     */
-    public static function getDb()
-    {
-        return Yii::$app->dbfilms;
+        return 'producer_n_films';
     }
 
     /**

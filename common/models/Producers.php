@@ -10,7 +10,7 @@ use Yii;
  * @property int $id
  * @property string $name
  *
- * @property Filmnproducers[] $filmnproducers
+ * @property producer_n_films[] $producer_n_films
  */
 class Producers extends \yii\db\ActiveRecord
 {
@@ -47,13 +47,8 @@ class Producers extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getFilmnproducers()
+    public function getProducer_n_films()
     {
-        return $this->hasMany(Filmnproducers::className(), ['genre_id' => 'id']);
-    }
-
-    public static function getDb()
-    {
-        return Yii::$app->dbfilms;
+        return $this->hasMany(producer_n_films::className(), ['producer_id' => 'id']);
     }
 }

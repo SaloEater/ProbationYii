@@ -23,9 +23,13 @@ class ProducerFilmsController extends Controller
     public function actionIndex()
     {
         $params = Yii::$app->request->queryParams;
+
+        print_r($params);
         $searchModel = new ProducersSearch();
+        if (isset($params['ProducersSearch']) && isset($params['ProducersSearch']['name'])) {
+            $searchModel->name = $params['ProducersSearch']['name'];
+        }
         $dataProvider = (new ProducerFilmsSearch())->search($params);
-        $searchModel->name = $params['ProducersSearch']['name'];
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

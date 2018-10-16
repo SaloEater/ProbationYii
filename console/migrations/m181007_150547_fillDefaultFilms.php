@@ -11,11 +11,11 @@ class m181007_150547_fillDefaultFilms extends Migration
      * {@inheritdoc}
      */
     private $content = [
-        'Тор: Рагнарёк',
-        'Человек-паук: Возвращение домой',
-        'Невероятный Халк',
-        'Человек-муравей и Оса',
-        'Железный человек',
+        'Thor',
+        'Spider Man',
+        'Hulk',
+        'Ant-man',
+        'Iron man',
     ];
     private $years = [2013, 2016, 2008, 2017, 2013];
 

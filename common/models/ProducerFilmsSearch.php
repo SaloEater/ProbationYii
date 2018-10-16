@@ -10,6 +10,7 @@ namespace common\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use yii\helpers\VarDumper;
 
 /**
  * FilmsSearch represents the model behind the search form of `common\models\Films`.
@@ -82,7 +83,9 @@ class ProducerFilmsSearch extends ProducerFilms
             ]);
         }
 
-        $query->andFilterWhere(['like', 'name', $params['ProducersSearch']['name']]);
+        if (isset($params['ProducersSearch']) && isset($params['ProducersSearch']['name'])) {
+            $query->andFilterWhere(['like', 'name', $params['ProducersSearch']['name']]);
+        }
 
         return $dataProvider;
     }

@@ -3,6 +3,6 @@ actor: AcceptanceTester
 modules:
   enabled:
   - PhpBrowser:
-      url: http://admin.project.test
+      url: http://admin.shop.test
   - Yii2:
       part: init

@@ -62,9 +62,4 @@ class Films extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Filmnproducers::className(), ['film_id' => 'id']);
     }
-
-    public static function getDb()
-    {
-        return Yii::$app->dbfilms;
-    }
 }

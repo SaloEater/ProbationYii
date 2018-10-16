@@ -2,7 +2,7 @@ actor: WebdriverTester
 modules:
     enabled:
         - WebDriver:
-            url: 'http://admin.project.test'
+            url: http://admin.shop.test
             port: 4444
             browser: chrome
         - frontend\tests\Helper\Webdriver

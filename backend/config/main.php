@@ -17,16 +17,9 @@ return [
         'db' => [
             'class' => 'yii\db\Connection',
             'driverName' => 'mysql',
-            'dsn' => 'mysql:host=localhost;dbname=yii2advanced',
-            'username' => 'mysql',
-            'password' => 'mysql',
-        ],
-        'dbfilms' => [
-            'class' => 'yii\db\Connection',
-            'driverName' => 'mysql',
-            'dsn' => 'mysql:host=localhost;dbname=films',
-            'username' => 'mysql',
-            'password' => 'mysql',
+            'dsn' => 'mysql:host=127.0.0.1;dbname=yii2advanced',
+            'username' => 'root',
+            'password' => '',
         ],
         'request' => [
             'csrfParam' => '_csrf-backend',
@@ -34,11 +27,11 @@ return [
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
-            'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
+            'identityCookie' => ['name' => '_identity', 'httpOnly' => true, 'domain' => $params['cookieDomain']],
         ],
         'session' => [
             // this is the name of the session cookie used for login on the backend
-            'name' => 'advanced-backend',
+            'name' => 'advanced',
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -52,12 +45,14 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
-        ]
+        'backendUrlManager' => require __DIR__ . '/urlManager.php',
+        'frontendUrlManager' => require __DIR__ . '/../../frontend/config/urlManager.php',
+        'urlManager' => function () {
+            return Yii::$app->get('backendUrlManager');
+        },
     ],
+
+
+
     'params' => $params,
 ];

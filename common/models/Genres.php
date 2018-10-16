@@ -50,9 +50,4 @@ class Genres extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Filmngenres::className(), ['genre_id' => 'id']);
     }
-
-    public static function getDb()
-    {
-        return Yii::$app->dbfilms;
-    }
 }

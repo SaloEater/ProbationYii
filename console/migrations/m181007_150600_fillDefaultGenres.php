@@ -10,7 +10,7 @@ class m181007_150600_fillDefaultGenres extends Migration
     /**
      * {@inheritdoc}
      */
-    private $content = ['Супергеройский фильм', 'Фантастика', 'Боевик', 'Приключенский фильм', 'Комедия'];
+    private $content = ['Superhero', 'Sci-fi', 'Action', 'Adventure', 'Comedy'];
 
     public function safeUp()
     {
