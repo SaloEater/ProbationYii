@@ -52,7 +52,7 @@ class Films extends \yii\db\ActiveRecord
      */
     public function getFilmngenres()
     {
-        return $this->hasMany(Filmngenres::className(), ['film_id' => 'id']);
+        return $this->hasMany(FilmNGenres::className(), ['film_id' => 'id']);
     }
 
     /**
@@ -60,6 +60,6 @@ class Films extends \yii\db\ActiveRecord
      */
     public function getFilmnproducers()
     {
-        return $this->hasMany(Filmnproducers::className(), ['film_id' => 'id']);
+        return $this->hasMany(ProducerNFilms::className(), ['film_id' => 'id']);
     }
 }

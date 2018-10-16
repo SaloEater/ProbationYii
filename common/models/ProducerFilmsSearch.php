@@ -23,7 +23,7 @@ class ProducerFilmsSearch extends ProducerFilms
     public function rules()
     {
         return [
-            [['id', 'film_id', 'producer_id'], 'integer'],
+            [['film_id', 'producer_id'], 'integer'],
         ];
     }
 
@@ -49,11 +49,6 @@ class ProducerFilmsSearch extends ProducerFilms
         // add conditions that should always apply here
         //Выбираем номера
         $query = ProducerFilms::find();
-
-        // grid filtering conditions
-        /*$query->andFilterWhere([
-            'id' => $this->id
-        ]);*/
 
         $query->groupBy('producer_id');
 

@@ -31,8 +31,12 @@ class ProducerFilms extends \yii\db\ActiveRecord
     {
         return [
             [['film_id', 'producer_id'], 'integer'],
-            [['film_id'], 'exist', 'skipOnError' => true, 'targetClass' => Films::className(), 'targetAttribute' => ['film_id' => 'id']],
-            [['producer_id'], 'exist', 'skipOnError' => true, 'targetClass' => Producers::className(), 'targetAttribute' => ['producer_id' => 'id']],
+            [['film_id'], 'exist', 'skipOnError' => true,
+                'targetClass' => Films::className(),
+                'targetAttribute' => ['film_id' => 'id']],
+            [['producer_id'], 'exist', 'skipOnError' => true,
+                'targetClass' => Producers::className(),
+                'targetAttribute' => ['producer_id' => 'id']],
         ];
     }
 
@@ -42,7 +46,6 @@ class ProducerFilms extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
             'film_id' => 'Film ID',
             'producer_id' => 'Producer ID',
         ];

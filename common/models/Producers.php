@@ -49,6 +49,6 @@ class Producers extends \yii\db\ActiveRecord
      */
     public function getProducer_n_films()
     {
-        return $this->hasMany(producer_n_films::className(), ['producer_id' => 'id']);
+        return $this->hasMany(ProducerNFilms::className(), ['producer_id' => 'id']);
     }
 }

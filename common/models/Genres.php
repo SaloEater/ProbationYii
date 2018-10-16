@@ -48,6 +48,6 @@ class Genres extends \yii\db\ActiveRecord
      */
     public function getFilmngenres()
     {
-        return $this->hasMany(Filmngenres::className(), ['genre_id' => 'id']);
+        return $this->hasMany(FilmNGenres::className(), ['genre_id' => 'id']);
     }
 }
