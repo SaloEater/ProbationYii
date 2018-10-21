@@ -11,6 +11,5 @@ service php7.2-fpm restart
 service nginx restart
 service mysql restart
 
-mysql
-SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
-^d
+
+info "Don't forger \"mysql SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));\""
