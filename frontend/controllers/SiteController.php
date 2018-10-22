@@ -1,4 +1,5 @@
 <?php
+
 namespace frontend\controllers;
 
 use Yii;
@@ -12,6 +13,8 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+
+use common\models\User;
 
 /**
  * Site controller
@@ -72,7 +75,15 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        /**
+         * @var User $user
+         */
+        $user = Yii::$app->user->getIdentity();
+        $lastlogin = $user == null ? null : $user->lastlogin;
+
+        return $this->render('index', [
+            'lastLogin' => $lastlogin,
+        ]);
     }
 
     /**
@@ -91,6 +102,7 @@ class SiteController extends Controller
             return $this->goBack();
         } else {
             $model->password = '';
+
             return $this->render('login', [
                 'model' => $model,
             ]);

@@ -3,17 +3,20 @@
 /* @var $this yii\web\View */
 
 $this->title = 'My Yii Application';
-if (!isset($_COOKIE['visitFrontendCounter'])) {
-    $_COOKIE['visitFrontendCounter'] = 0;
+
+$loginTimeInfo = '';
+
+if ($lastLogin != null ) {
+        $loginTimeInfo = ' and you logged in '.date('Y-m-d H:i:s', $lastLogin);
 }
-setcookie('visitFrontendCounter', ++$_COOKIE['visitFrontendCounter']);
+
 ?>
 <div class="site-index">
 
     <div class="jumbotron">
         <h1>Congratulations!</h1>
 
-        <p class="lead">You have successfully created your Yii-powered application and visited this page <?=$_COOKIE['visitFrontendCounter'] ?> times.</p>
+        <p class="lead">You have successfully created your Yii-powered application<?=$loginTimeInfo?>.</p>
 
         <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
     </div>

@@ -1,4 +1,5 @@
 <?php
+
 $params = array_merge(
     require __DIR__ . '/../../common/config/params.php',
     require __DIR__ . '/../../common/config/params-local.php',
@@ -19,6 +20,14 @@ return [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity', 'httpOnly' => true, 'domain' => $params['cookieDomain']],
+            'on beforeLogin' => function (yii\web\UserEvent $event) {
+                /**
+                 * @var common\models\User $user
+                 */
+                echo 'before Login';
+                $user = $event->identity;
+                $user->updateAttributes(['lastlogin' => time()]);
+            },
         ],
         'session' => [
             // this is the name of the session cookie used for login on the frontend
@@ -29,7 +38,7 @@ return [
             'targets' => [
                 [
                     'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
+                    'levels' => ['error', 'warning', 'info'],
                 ],
             ],
         ],
