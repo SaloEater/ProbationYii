@@ -75,6 +75,7 @@ class Films extends \yii\db\ActiveRecord
 
     public function save($runValidation = true, $attributeNames = null)
     {
+        //Fake changing
         $now = date('Y-m-d H:i:s', time());
         if ($this->getIsNewRecord()) {
             $this->created = $now;
