@@ -20,6 +20,9 @@ class FilmsSearch extends Films
         return [
             [['id', 'year'], 'integer'],
             [['name'], 'safe'],
+            [['created'], 'safe'],
+            [['updated'], 'safe'],
+            [['whoCreate'], 'safe'],
         ];
     }
 

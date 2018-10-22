@@ -10,12 +10,16 @@ use Yii;
  * @property int $id
  * @property string $name
  * @property int $year
+ * @property string $created
+ * @property string whoCreate
+ * @property string $updated
  *
  * @property Filmngenres[] $filmngenres
- * @property Filmnproducers[] $filmnproducers
+ * @property ProducerNFilms[] $filmnproducers
  */
 class Films extends \yii\db\ActiveRecord
 {
+
     /**
      * {@inheritdoc}
      */
@@ -32,6 +36,9 @@ class Films extends \yii\db\ActiveRecord
         return [
             [['name'], 'string'],
             [['year'], 'integer'],
+            [['created'], 'string'],
+            [['whoCreate'], 'string'],
+            [['updated'], 'string'],
         ];
     }
 
@@ -44,6 +51,9 @@ class Films extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'year' => 'Year',
+            'created' => 'Created',
+            'whoCreate' => 'By',
+            'updated' => 'Updated',
         ];
     }
 
@@ -61,5 +71,26 @@ class Films extends \yii\db\ActiveRecord
     public function getFilmnproducers()
     {
         return $this->hasMany(ProducerNFilms::className(), ['film_id' => 'id']);
+    }
+
+    public function save($runValidation = true, $attributeNames = null)
+    {
+        $now = date('Y-m-d H:i:s', time());
+        if ($this->getIsNewRecord()) {
+            $this->created = $now;
+            $this->whoCreate = $this->getUser()->username;
+        }
+        $this->updated = $now;
+
+        return parent::save($runValidation, $attributeNames);
+    }
+
+    /**
+     * @throws \Throwable
+     * @return User
+     */
+    private function getUser()
+    {
+        return Yii::$app->user->getIdentity();
     }
 }
