@@ -25,15 +25,15 @@ class Films extends \yii\db\ActiveRecord
         $own = [
             'createWatcher' => [
                 'class' => 'common\behaviours\createWatcher',
-                'obj' => $this,
+                'activeRecord' => $this,
             ],
             'updateWatcher' => [
                 'class' => 'common\behaviours\updateWatcher',
-                'obj' => $this,
+                'activeRecord' => $this,
             ],
             'whoCreateWatcher' => [
                 'class' => 'common\behaviours\whoCreateWatcher',
-                'obj' => $this,
+                'activeRecord' => $this,
             ],
         ];
 
