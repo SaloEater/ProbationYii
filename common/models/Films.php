@@ -13,12 +13,32 @@ use Yii;
  * @property string $created
  * @property string whoCreate
  * @property string $updated
+ * @property int $nameLength
  *
  * @property Filmngenres[] $filmngenres
  * @property ProducerNFilms[] $filmnproducers
  */
 class Films extends \yii\db\ActiveRecord
 {
+    public function behaviors()
+    {
+        $own = [
+            'createWatcher' => [
+                'class' => 'common\behaviours\createWatcher',
+                'obj' => $this,
+            ],
+            'updateWatcher' => [
+                'class' => 'common\behaviours\updateWatcher',
+                'obj' => $this,
+            ],
+            'whoCreateWatcher' => [
+                'class' => 'common\behaviours\whoCreateWatcher',
+                'obj' => $this,
+            ],
+        ];
+
+        return array_merge(parent::behaviors(), $own);
+    }
 
     /**
      * {@inheritdoc}
@@ -71,27 +91,5 @@ class Films extends \yii\db\ActiveRecord
     public function getFilmnproducers()
     {
         return $this->hasMany(ProducerNFilms::className(), ['film_id' => 'id']);
-    }
-
-    public function save($runValidation = true, $attributeNames = null)
-    {
-        //Fake changing
-        $now = date('Y-m-d H:i:s', time());
-        if ($this->getIsNewRecord()) {
-            $this->created = $now;
-            $this->whoCreate = $this->getUser()->username;
-        }
-        $this->updated = $now;
-
-        return parent::save($runValidation, $attributeNames);
-    }
-
-    /**
-     * @throws \Throwable
-     * @return User
-     */
-    private function getUser()
-    {
-        return Yii::$app->user->getIdentity();
     }
 }
