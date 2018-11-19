@@ -10,24 +10,19 @@ $params = array_merge(
 return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => [
+        'log',
+        'common\bootstrap\SetupServices',
+    ],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
         ],
         'user' => [
-            'identityClass' => 'common\models\User',
+            'identityClass' => 'bookkeeping\entities\User',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity', 'httpOnly' => true, 'domain' => $params['cookieDomain']],
-            'on beforeLogin' => function (yii\web\UserEvent $event) {
-                /**
-                 * @var common\models\User $user
-                 */
-                echo 'before Login';
-                $user = $event->identity;
-                $user->updateAttributes(['lastlogin' => time()]);
-            },
         ],
         'session' => [
             // this is the name of the session cookie used for login on the frontend
@@ -43,7 +38,7 @@ return [
             ],
         ],
         'errorHandler' => [
-            'errorAction' => 'site/error',
+            'errorAction' => '/error',
         ],
 
         'frontendUrlManager' => require __DIR__ . '/urlManager.php',

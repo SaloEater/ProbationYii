@@ -25,7 +25,7 @@ return [
             'csrfParam' => '_csrf-backend',
         ],
         'user' => [
-            'identityClass' => 'common\models\User',
+            'identityClass' => 'bookkeeping\entities\User',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity', 'httpOnly' => true, 'domain' => $params['cookieDomain']],
         ],
@@ -43,7 +43,7 @@ return [
             ],
         ],
         'errorHandler' => [
-            'errorAction' => 'site/error',
+            'errorAction' => '/error',
         ],
         'backendUrlManager' => require __DIR__ . '/urlManager.php',
         'frontendUrlManager' => require __DIR__ . '/../../frontend/config/urlManager.php',

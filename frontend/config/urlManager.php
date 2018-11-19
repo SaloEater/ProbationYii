@@ -14,7 +14,16 @@ return [
     'showScriptName' => false,
     'rules' => [
         '' => 'site/index',
-        '<_a:login|logout>' =>'site/<_a>',
+        '<_a:login|logout>' => 'auth/auth/<_a>',
+        'signup/<_a:[\w-]+>' => 'auth/signup/<_a>',
+        'signup' => 'auth/signup/signup',
+        '<_a:contact>' => 'contact/<_a>',
+        '<_a:about' => 'site/<_a>',
+
+
+        //site/... redirects
+        'site/login' => 'auth/auth/login',
+        'site/<_a:[\w-]+>' => 'site/<_a>',
 
         '<_c:[\w\-]+>' => '<_c>/index',
         '<_c:[\w\-]+>/<id:\d+>' => '<_c>/view',

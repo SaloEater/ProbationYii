@@ -12,8 +12,8 @@ return [
             'class' => 'yii\caching\memCache',
             'useMemcached' => true,
         ],
-        'backendUrlManager' => require __DIR__ . '/../../backend/config/urlManager.php',
-        'frontendUrlManager' => require __DIR__ . '/../../frontend/config/urlManager.php',
+        'backendUrlManager' => __DIR__.'/../../backend/config/urlManager.php',
+        'frontendUrlManager' => __DIR__.'/../../frontend/config/urlManager.php',
         'urlManager' => function () {
             return Yii::$app->get('frontendUrlManager');
         },

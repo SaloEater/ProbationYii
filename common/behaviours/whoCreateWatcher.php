@@ -8,7 +8,7 @@
 
 namespace common\behaviours;
 
-use common\models\User;
+use bookkeeping\entities\User;
 use yii;
 use yii\base\Behavior;
 

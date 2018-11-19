@@ -1,9 +1,9 @@
 <?php
 
-namespace common\tests\unit\models;
+namespace bookkeeping\tests\unit\models;
 
+use bookkeeping\forms\auth\LoginForm;
 use Yii;
-use common\models\LoginForm;
 use common\fixtures\UserFixture;
 
 /**
@@ -24,7 +24,7 @@ class LoginFormTest extends \Codeception\Test\Unit
     {
         return [
             'user' => [
-                'class' => UserFixture::className(),
+                'class' => UserFixture::class,
                 'dataFile' => codecept_data_dir() . 'user.php'
             ]
         ];
