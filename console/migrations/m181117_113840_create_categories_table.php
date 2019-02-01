@@ -21,7 +21,7 @@ class m181117_113840_create_categories_table extends Migration
             'createdBy' => $this->integer()->notNull(),
             'name' => $this->text(),
             'familyId' => $this->integer()->notNull(),
-            'createdAt' => $this->integer(),
+            'createdAt' => $this->integer(11),
         ]);
 
         // creates index for column `createdBy`

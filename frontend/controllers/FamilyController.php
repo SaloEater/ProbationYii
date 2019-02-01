@@ -12,6 +12,7 @@ use bookkeeping\entities\Category;
 use bookkeeping\repositories\bookkeeping\FamilyRepository;
 use bookkeeping\services\manage\bookkeeping\CategoryService;
 use bookkeeping\services\manage\bookkeeping\FamilyMemberService;
+use bookkeeping\services\util\SelfPostService;
 use Yii;
 use bookkeeping\entities\Family;
 use bookkeeping\repositories\bookkeeping\FamilyMemberRepository;
@@ -27,6 +28,7 @@ class FamilyController extends Controller
     private $memberService;
     private $familyService;
     private $categoryService;
+    private $selfPostService;
 
     public function __construct(
         string $id,
@@ -34,11 +36,13 @@ class FamilyController extends Controller
         FamilyMemberService $memberService,
         FamilyService $familyService,
         CategoryService $categoryService,
+        SelfPostService $selfPostService,
         array $config = []
     ) {
         $this->memberService = $memberService;
         $this->familyService = $familyService;
         $this->categoryService = $categoryService;
+        $this->selfPostService = $selfPostService;
         parent::__construct($id, $module, $config);
     }
 
@@ -74,12 +78,8 @@ class FamilyController extends Controller
         $family = (new FamilyRepository())->get($familyId);
         $rootCategory = $this->categoryService->getFamilyRoot($familyId);
 
-        /*$newCategory = $this->categoryService->createHandmaded(
-            $this->currentUserId(),
-            'New',
-            $familyId,
-            $rootCategory->id
-        );*/
+        //Определяем действие из кук
+        $this->selfPostService->execute(Yii::$app->request->post());
 
         return $this->render('index', [
             'family' => $family,

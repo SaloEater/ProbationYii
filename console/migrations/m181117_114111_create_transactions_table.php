@@ -18,11 +18,11 @@ class m181117_114111_create_transactions_table extends Migration
     {
         $this->createTable('transactions', [
             'id' => $this->primaryKey(),
-            'userId' => $this->integer()->notNull()->unique(),
+            'userId' => $this->integer()->notNull(),
             'wealth' => $this->float(),
             'categoryId' => $this->integer(),
-            'createdAt' => $this->integer(),
-            'date' => $this->integer(),
+            'createdAt' => $this->integer(11),
+            'date' => $this->integer(11),
         ]);
 
         // creates index for column `userId`

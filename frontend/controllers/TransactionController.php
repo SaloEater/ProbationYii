@@ -2,29 +2,33 @@
 /**
  * Created by PhpStorm.
  * User: Tom
- * Date: 19.11.2018
- * Time: 11:07
+ * Date: 31.12.2018
+ * Time: 14:27
  */
 
 namespace frontend\controllers;
 
-use Yii;
 use bookkeeping\forms\manage\bookkeeping\CategoryForm;
-use bookkeeping\services\manage\bookkeeping\CategoryService;
+use bookkeeping\forms\manage\bookkeeping\TransactionForm;
+use bookkeeping\services\manage\bookkeeping\TransactionService;
 use yii\base\Module;
+use yii\web\controller;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
-use yii\web\Controller;
-use yii\web\Cookie;
+use Yii;
+use DateTime;
 
-class CategoryController extends Controller
+class TransactionController extends Controller
 {
 
-    private $categoryService;
+    /**
+     * @var TransactionService $transactionService
+     */
+    private $transactionService;
 
-    public function __construct(string $id, Module $module, CategoryService $categoryService, array $config = [])
+    public function __construct(string $id, Module $module, TransactionService $transactionService, array $config = [])
     {
-        $this->categoryService = $categoryService;
+        $this->transactionService = $transactionService;
         parent::__construct($id, $module, $config);
     }
 
@@ -53,23 +57,23 @@ class CategoryController extends Controller
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function actionCreate()
     {
-        $form = new CategoryForm();
-        if (isset(Yii::$app->request->post()['familyId']) &&
-            isset(Yii::$app->request->post()['parentId'])) {
-            $_SESSION['familyId'] = Yii::$app->request->post()['familyId'];
-            $_SESSION['parentId'] = Yii::$app->request->post()['parentId'];
+        $form = new TransactionForm();
+        if (isset(Yii::$app->request->post()['id'])) {
+            $_SESSION['catId'] = Yii::$app->request->post()['id'];
         }
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             try {
-                $form->familyId = $_SESSION['familyId'];
-                $form->parentId = $_SESSION['parentId'];
-                $form->createdBy = $this->currentUserId();
+                $form->categoryId = $_SESSION['catId'];
                 $form->createdAt = time();
-                $this->categoryService->create($form);
-                unset($_SESSION['familyId']);
-                unset($_SESSION['parentId']);
+                $form->userId = $this->currentUserId();
+                $form->date = DateTime::createFromFormat('d/m/Y', $form->date)->getTimestamp();
+                $this->transactionService->create($form);
+                unset($_SESSION['catId']);
 
                 return $this->redirect('/../../family');
             } catch (\RuntimeException $e) {
@@ -88,4 +92,6 @@ class CategoryController extends Controller
         return Yii::$app->user->id;
     }
 
+
 }
+

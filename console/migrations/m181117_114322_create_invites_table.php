@@ -18,7 +18,7 @@ class m181117_114322_create_invites_table extends Migration
         $this->createTable('invites', [
             'familyId' => $this->integer()->notNull()->unique(),
             'secret' => $this->text(),
-            'createdAt' => $this->integer(),
+            'createdAt' => $this->integer(11),
         ]);
 
         // creates index for column `familyId`

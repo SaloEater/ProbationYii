@@ -8,10 +8,10 @@
 
 namespace bookkeeping\services\manage\bookkeeping;
 
-
 use bookkeeping\entities\Category;
 use bookkeeping\forms\manage\bookkeeping\CategoryForm;
 use bookkeeping\repositories\bookkeeping\CategoryRepository;
+use yii\db\Exception;
 
 class CategoryService
 {
@@ -24,6 +24,14 @@ class CategoryService
     public function __construct(CategoryRepository $categories)
     {
         $this->categories = $categories;
+    }
+
+    public function moveTo($id, $destinationId)
+    {
+        $category = $this->categories->get($id);
+
+        $category = $category->appendTo($this->categories->get(($destinationId)));
+        $this->categories->save($category);
     }
 
     public function create(CategoryForm $form): Category
@@ -59,6 +67,18 @@ class CategoryService
     {
         $this->assertIsNotRoot($category);
         $this->categories->remove($category);
+    }
+
+    public function removeByIdWithChildrens($id)
+    {
+        $category = $this->categories->get($id);
+        $this->removeWithChildren($category);
+    }
+
+    public function removeWithChildren(Category $category)
+    {
+        $this->assertIsNotRoot($category);
+        $this->categories->removeWithChildren($category);
     }
 
     private function assertIsNotRoot(Category $category)

@@ -38,6 +38,13 @@ class CategoryRepository extends IRepository
         }
     }
 
+    public function removeWithChildren(Category $category)
+    {
+        if (!$category->deleteWithChildren()) {
+            throw new \RuntimeException('Category saving error');
+        }
+    }
+
     public function getFamilyRoot($id): Category
     {
         return $this->getBy([

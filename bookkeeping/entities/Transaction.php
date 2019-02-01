@@ -39,8 +39,13 @@ class Transaction extends ActiveRecord
 
     public static function tableName()
     {
-        return '{{$transactions}}';
+        return '{{%transactions}}';
     }
 
+    public function __toString()
+    {
+        $stringDate = date('d-m-Y', $this->date);
+        return "$this->wealth было потрачено $stringDate";
+    }
 
 }

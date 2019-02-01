@@ -18,7 +18,7 @@ class m181117_114519_create_members_table extends Migration
     {
         $this->createTable('members', [
             'userId' => $this->integer()->notNull()->unique(),
-            'familyId' => $this->integer()->notNull()->unique(),
+            'familyId' => $this->integer()->notNull(),
         ]);
 
         // creates index for column `userId`

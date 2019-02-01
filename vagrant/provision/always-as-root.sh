@@ -11,5 +11,5 @@ service php7.2-fpm restart
 service nginx restart
 service mysql restart
 
-
-info "Don't forger \"mysql SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));\""
+info "Don't forget \"mysql SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));\""
+info "And alias yiiM='php /app/yii'"

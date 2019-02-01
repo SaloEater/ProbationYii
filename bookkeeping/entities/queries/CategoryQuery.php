@@ -8,7 +8,6 @@
 
 namespace bookkeeping\entities\queries;
 
-
 use paulzi\nestedsets\NestedSetsQueryTrait;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;

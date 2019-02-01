@@ -8,13 +8,6 @@ return [
             'password' => '',
             'charset' => 'utf8',
         ],
-        'dbfilms' => [
-            'class' => 'yii\db\Connection',
-            'driverName' => 'mysql',
-            'dsn' => 'mysql:host=127.0.0.1;dbname=films',
-            'username' => 'mysql',
-            'password' => 'mysql',
-        ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             'viewPath' => '@common/mail',

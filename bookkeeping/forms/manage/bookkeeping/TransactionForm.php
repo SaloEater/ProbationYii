@@ -8,7 +8,6 @@
 
 namespace bookkeeping\forms\manage\bookkeeping;
 
-
 use bookkeeping\entities\Transaction;
 use yii\base\Model;
 
@@ -40,10 +39,9 @@ class TransactionForm extends Model
     public function rules()
     {
         return [
-            [['username'], 'required'],
-            [['username'], 'string', 'max' => 255],
+            [['wealth', 'date'], 'required'],
+            [['wealth', 'date'], 'string', 'max' => 255],
             [['id'], 'unique', 'targetClass' => Transaction::class],
-            [['userId'], 'unique', 'targetClass' => Transaction::class],
         ];
     }
 }

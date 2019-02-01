@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use bookkeeping\entities\widgets\FamilyWidget;
-use bookkeeping\entities\widgets\CategoryWidget;
+use bookkeeping\entities\widgets\ExpensesWidget;
 
 /**
  * @var \bookkeeping\entities\Family $family
@@ -15,5 +15,5 @@ $this->title = 'Ваша семья';
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?= FamilyWidget::widget(['family' => $family]) ?>
-    <?= CategoryWidget::widget(['rootCategory' => $rootCategory]) ?>
+    <?= ExpensesWidget::widget(['rootCategory' => $rootCategory]) ?>
 </div>

@@ -56,4 +56,9 @@ class TransactionService
         $account->add($transaction->wealth);
     }
 
+    public function removeById($id)
+    {
+        $transaction = $this->transactions->get($id);
+        $this->transactions->remove($transaction);
+    }
 }
